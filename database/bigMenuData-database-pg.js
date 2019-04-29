@@ -30,6 +30,15 @@ psqlCommands.prototype.writeAll = function(count=0) {
   });
 };
 
+psqlCommands.prototype.writeOnce = function(fileNumber) {
+  return new Promise( (resolve, rejct) => {
+
+    postgres.psqlClient.query(`COPY menu_selection(id,BREAKFAST,LUNCH,DINNER,BRUNCH,HAPPYHOUR) FROM '${this.pathCSVTest}/data${fileNumber}.csv'  WITH DELIMITER ',' CSV HEADER`)
+    .then( ()=> resolve(  { file :`${this.pathCSVTest}/data${fileNumber}.csv` , fileNumber : fileNumber }  ) )
+    .catch( (err)=> rejct( err))
+  })
+}
+
 psqlCommands.prototype.fetchRecordOrigin = function () {
   var numbers = randomNumbersList_100();
   return new Promise ((resolve, reject)=> {

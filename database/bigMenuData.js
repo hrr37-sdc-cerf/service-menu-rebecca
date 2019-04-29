@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const sim  = require('./pre-process-faker').fakerBuild();
+const {postgres} = require('./bigMenuData-database-pg');
 var counter = 1;
 
 var nObjects = function(count) {
@@ -50,7 +51,24 @@ var build =  function ( count=0 ) {
 
   generateBlock(records,count, (bool )=>{
     if (bool) {
-      build(++count);
+
+      postgres.ops.writeOnce(count)
+      .then( (obj) => {
+        console.log(' LOG:  completed generation of csv file Number  ' + obj.fileNumber)
+        return new Promise( (resolve, reject) => {
+
+          fs.unlink(obj.file, (err)=>{
+            if (err) {
+              reject(err);
+            } else {
+              resolve(obj.fileNumber);
+              console.log('LOG:  Removed csv file Number  ' +obj.fileNumber + ' from storage' )
+            }
+          });
+        })
+      })
+      .then( (count)=> build(++count))
+      .catch( (err)=> console.log(err))
     }
   });
 };
