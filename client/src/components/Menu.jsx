@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import classes from "./Menu.css";
-
+const HOST = 'http://ec2-54-193-44-114.us-west-1.compute.amazonaws.com:3004'; //http://1ocalhost:3004
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -20,13 +20,13 @@ class Menu extends Component {
     this.setState(state => ({ collapse: !state.collapse }));
   }
   componentDidMount() {
-    axios.get(    'http://localhost:3004'+  `/menus/${this.state.UrlId}`).then(res => {
+    axios.get(  HOST  +  `/menus/${this.state.UrlId}`).then(res => {
       this.setState({ menu: res.data[0].Breakfast });
     });
   }
 
   getMenus(menutype) {
-    axios.get('http://localhost:3004'+ `/menus/${this.state.UrlId}`).then(res => {
+    axios.get(  HOST + `/menus/${this.state.UrlId}`).then(res => {
       this.setState({ menu: res.data[0][menutype] });
     });
   }
