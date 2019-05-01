@@ -3,7 +3,7 @@
 const { Client } = require('pg');
 const psqlClient = new Client({
   database: 'test',
-  host : 'ec2-54-193-44-114.us-west-1.compute.amazonaws.com',
+  host : 'ec2-54-67-84-61.us-west-1.compute.amazonaws.com',
   port: '5432'
 });
 psqlClient.connect()
