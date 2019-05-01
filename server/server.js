@@ -7,7 +7,7 @@ const path = require("path");
 const port = process.env.PORT || 3004;
 const db = require("../database/index.js");
 const {postgres} = require('../database/bigMenuData-database-pg.js');
-const awsHostName = 'ec2-54-193-44-114.us-west-1.compute.amazonaws.com';
+const awsHostName = process.env.AWS_SERVICE_HOSTNAME;
 app.use(cors());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
