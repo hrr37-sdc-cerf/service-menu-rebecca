@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "seed-data": "node database/seed.js",
-    "start": "nodemon --ignore /TESTDATA  --max-old-space-size=16384 server/server.js",
+    "start": "node server/server.js",
     "build": "webpack -d --watch",
     "build-mode": "webpack --mode production",
-    "postgres-load": "node database/sdc-scripts.js 2",
     "csv-load": "node --max-old-space-size=16384  database/sdc-scripts.js 1",
     "test": "jest"
   },
-  "author": "rebecca",
+  "author": "author",
+   "contributors" : ["Hector Williams"],
   "license": "ISC",
   "dependencies": {
     "1.0.1": "^1.0.0",
