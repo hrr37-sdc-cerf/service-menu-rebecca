@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import classes from "./Menu.css";
-const HOST =  process.env.AWS_SERVICE_HOSTNAME + ':3004';  //http://1ocalhost:3004
+const HOST = 'http://'+ 'ec2-54-215-191-132.us-west-1.compute.amazonaws.com'   + ':3004';  //http://1ocalhost:3004
 
 class Menu extends Component {
   constructor(props) {
